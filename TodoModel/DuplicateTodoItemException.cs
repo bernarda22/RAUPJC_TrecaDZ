@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Interfaces
+namespace TodoModel
 {
     [Serializable]
     internal class DuplicateTodoItemException : Exception

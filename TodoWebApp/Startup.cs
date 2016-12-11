@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using TodoWebApp.Data;
 using TodoWebApp.Models;
 using TodoWebApp.Services;
-using Interfaces;
+using TodoModel;
 
 namespace TodoWebApp
 {
@@ -101,9 +101,9 @@ namespace TodoWebApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                routes.MapRoute(
-                   name: "todo",
-                    template: "{controller=Todo}/{action=Index}/{id?}");
+                //routes.MapRoute(
+                //   name: "todo",
+                //    template: "{controller=Todo}/{action=Index}/{id?}");
             });
         }
     }

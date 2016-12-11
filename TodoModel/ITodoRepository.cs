@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Interfaces
+namespace TodoModel
 {
     public interface ITodoRepository
     {

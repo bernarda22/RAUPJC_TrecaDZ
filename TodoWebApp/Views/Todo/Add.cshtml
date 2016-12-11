@@ -1,0 +1,17 @@
+﻿@model TodoWebApp.Models.TodoViewModels.AddTodoViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Add student</title>
+</head>
+<body>
+    <div>
+        <form asp-action="Add" method="post">
+            Todo Text: <input asp-for="Text" /> <span asp-validation-for="Text"></span> <br />
+            <input type="submit" />
+        </form>
+    </div>
+</body>
+</html>

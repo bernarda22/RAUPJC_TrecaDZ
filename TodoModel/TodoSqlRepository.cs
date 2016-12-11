@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Interfaces
+namespace TodoModel
 {
     public class TodoSqlRepository : ITodoRepository
     {

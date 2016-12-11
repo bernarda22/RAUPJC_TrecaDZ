@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Interfaces
+namespace TodoModel
 {
     public class TodoItem
     {
