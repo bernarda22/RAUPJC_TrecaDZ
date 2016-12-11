@@ -20,9 +20,14 @@ namespace TodoWebApp.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            // Get currently logged -in user using userManager
+            ApplicationUser currentUser = await
+            _userManager.GetUserAsync(HttpContext.User);
+            var todos = _repository.GetActive(new Guid(currentUser.Id));
+
+            return View(todos);
         }
 
         public async Task<IActionResult> Todos()
@@ -30,7 +35,7 @@ namespace TodoWebApp.Controllers
             // Get currently logged -in user using userManager
             ApplicationUser currentUser = await
             _userManager.GetUserAsync(HttpContext.User);
-            var todos = _repository.GetAll(new Guid(currentUser.Id));
+            var todos = _repository.GetActive(new Guid(currentUser.Id));
 
             return View(todos);
         }
@@ -53,7 +58,7 @@ namespace TodoWebApp.Controllers
                 _userManager.GetUserAsync(HttpContext.User);
 
                 _repository.Add(new TodoItem(model.Text, new Guid(currentUser.Id)));
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Todos));
             }
             else
             {
@@ -63,6 +68,26 @@ namespace TodoWebApp.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        // GET: /Todo/Completed/{id?}
+        [HttpGet]
+        public async Task<IActionResult> Completed(String id = null)
+        {
+            // Get currently logged -in user using userManager
+            ApplicationUser currentUser = await
+                _userManager.GetUserAsync(HttpContext.User);
+
+            if (id != null)
+            {
+                _repository.MarkAsCompleted(new Guid(id), new Guid(currentUser.Id));
+                return RedirectToAction(nameof(Todos));
+            } else
+            {
+                var todos = _repository.GetCompleted(new Guid(currentUser.Id));
+                // If we got this far, something failed, redisplay form
+                return View(todos);
+            }
         }
     }
 }

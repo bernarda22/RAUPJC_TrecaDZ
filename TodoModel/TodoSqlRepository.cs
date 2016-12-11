@@ -35,7 +35,7 @@ namespace TodoModel
 
         public List<TodoItem> GetActive(Guid userId)
         {
-            return _context.TodoItems.Where(s => s.UserId == userId && s.IsCompleted == false).ToList();
+            return _context.TodoItems.Where(s => s.UserId == userId && s.IsCompleted == false).OrderByDescending(s => s.DateCreated).ToList();
         }
 
         public List<TodoItem> GetAll(Guid userId)

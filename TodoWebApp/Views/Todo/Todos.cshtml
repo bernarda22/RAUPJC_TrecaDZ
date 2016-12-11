@@ -4,9 +4,8 @@
 
 </head>
 <body>
-    <h1>Active todo</h1>
     <div>
-        <br />
+        <br/>
         <a asp-action="Add">Add new todo</a>
         <a asp-action="Completed">See completed todos</a>
         <table>
@@ -16,11 +15,11 @@
                     <td>
                         <h2>@todo.Text</h2>
                         <div>@todo.DateCreated.ToString("dd. MMMM yyyy.")</div>
-                        <br />
+                        <br/>
                         <div>
                             <a href=@Url.Action("Completed", "Todo", new { id = todo.Id })>mark as completed</a>
                         </div>
-                        <hr />
+                        <hr/>
                     </td>
                 </tr>
             }
